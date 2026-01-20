@@ -1,8 +1,16 @@
 ## Hi there 👋  
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Giperx)](https://github.com/anuraghazra/github-readme-stats)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&theme=dark">
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&theme=default">
+  <img alt="Giperx's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true">
+</picture>
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact&theme=dark">
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact&theme=default">
+  <img alt="Top Langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact">
+</picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Peter-JXL/Peter-JXL/output/github-contribution-grid-snake-dark.svg">
