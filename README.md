@@ -18,6 +18,8 @@
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Peter-JXL/Peter-JXL/output/github-contribution-grid-snake.svg">
 </picture>
 
+![visitors](https://visitor-badge.glitch.me/badge?page_id=Giperx&left_color=green&right_color=red)
+
 
 <!--
 **Giperx/Giperx** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
