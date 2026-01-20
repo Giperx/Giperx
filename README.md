@@ -1,4 +1,6 @@
-## Hi there 👋  <div align="center"> <img src="https://visitor-badge.glitch.me/badge?page_id=sun0225SUN" /> </div>
+## Hi there 👋  
+
+<div align="center"> <img src="https://visitor-badge.glitch.me/badge?page_id=Giperx" /> </div>
 
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Giperx)](https://github.com/anuraghazra/github-readme-stats)
 
