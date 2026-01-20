@@ -1,10 +1,10 @@
 ## Hi there 👋  
 
-<div align="center"> <img src="https://visitor-badge.glitch.me/badge?page_id=Giperx" /> </div>
-
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Giperx)](https://github.com/anuraghazra/github-readme-stats)
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx)
+
+<div align="center"> <img src="https://github-readme-streak-stats.herokuapp.com/?user=Giperx" /> </div>
 
 <!--
 **Giperx/Giperx** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
