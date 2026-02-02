@@ -3,16 +3,18 @@
 ![Metrics](/github-metrics.svg)
 
 
+<!-- GitHub 统计卡片 - 支持深色/浅色主题 -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&theme=dark">
-  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&theme=default">
-  <img alt="Giperx's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true">
+  <source media="(prefers-color-scheme: dark)" srcset="./profile/stats-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./profile/stats-light.svg">
+  <img alt="Giperx's GitHub stats" src="./profile/stats-light.svg">
 </picture>
 
+<!-- 语言统计卡片 - 支持深色/浅色主题 -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact&theme=dark">
-  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact&theme=default">
-  <img alt="Top Langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Giperx&layout=compact">
+  <source media="(prefers-color-scheme: dark)" srcset="./profile/top-langs-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./profile/top-langs-light.svg">
+  <img alt="Top Languages" src="./profile/top-langs-light.svg">
 </picture>
 
 <picture>
