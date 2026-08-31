@@ -15,6 +15,8 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      STATS_API_BASE_URL: ${{ vars.README_STATS_API_BASE_URL }}
 
     steps:
       - name: Checkout
@@ -25,10 +27,19 @@ jobs:
           mkdir -p profile
           mkdir -p .tmp
 
+      - name: Resolve stats endpoint
+        run: |
+          if [ -z "$STATS_API_BASE_URL" ]; then
+            echo "::warning::README_STATS_API_BASE_URL is not set; fallback to public endpoint."
+            echo "STATS_API_BASE_URL=https://github-readme-stats.vercel.app" >> "$GITHUB_ENV"
+          else
+            echo "Using self-hosted endpoint: $STATS_API_BASE_URL"
+          fi
+
       - name: Fetch light stats
         run: |
           if curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
-            "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=default&cache_seconds=21600" \
+            "${STATS_API_BASE_URL}/api?username=Giperx&show_icons=true&hide_border=true&theme=default&cache_seconds=21600" \
             -o .tmp/stats-light.svg; then
             echo "Fetched light stats from remote service."
           else
@@ -40,7 +51,7 @@ jobs:
       - name: Fetch dark stats
         run: |
           if curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
-            "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=github_dark&cache_seconds=21600" \
+            "${STATS_API_BASE_URL}/api?username=Giperx&show_icons=true&hide_border=true&theme=github_dark&cache_seconds=21600" \
             -o .tmp/stats-dark.svg; then
             echo "Fetched dark stats from remote service."
           else
