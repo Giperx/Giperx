@@ -27,15 +27,27 @@ jobs:
 
       - name: Fetch light stats
         run: |
-          curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
+          if curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
             "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=default&cache_seconds=21600" \
-            -o .tmp/stats-light.svg
+            -o .tmp/stats-light.svg; then
+            echo "Fetched light stats from remote service."
+          else
+            echo "Remote light stats unavailable, using local fallback."
+            test -s profile/stats-light.svg
+            cp profile/stats-light.svg .tmp/stats-light.svg
+          fi
 
       - name: Fetch dark stats
         run: |
-          curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
+          if curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
             "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=github_dark&cache_seconds=21600" \
-            -o .tmp/stats-dark.svg
+            -o .tmp/stats-dark.svg; then
+            echo "Fetched dark stats from remote service."
+          else
+            echo "Remote dark stats unavailable, using local fallback."
+            test -s profile/stats-dark.svg
+            cp profile/stats-dark.svg .tmp/stats-dark.svg
+          fi
 
       - name: Validate SVGs
         run: |
