@@ -3,16 +3,6 @@
 ![Metrics](/github-metrics.svg)
 
 
-> 自建 `github-readme-stats`（Vercel）配置：在仓库 **Settings → Secrets and variables → Actions → Variables** 中添加  
-> `README_STATS_API_BASE_URL=https://<你的-vercel-域名>`（不要带结尾 `/`）。
-
-<!-- GitHub 统计卡片 - 支持深色/浅色主题 -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile/stats-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./profile/stats-light.svg">
-  <img alt="Giperx's GitHub stats" src="./profile/stats-light.svg">
-</picture>
-
 <!-- 语言统计卡片 - 支持深色/浅色主题 -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./profile/top-langs-dark.svg">
