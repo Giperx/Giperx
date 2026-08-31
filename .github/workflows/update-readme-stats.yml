@@ -1,65 +1,60 @@
-name: Update README Stats
+name: Generate Profile Stats
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 每天午夜自动运行
-  workflow_dispatch:      # 允许手动触发
-  push:
-    branches:
-      - main
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-stats
+  cancel-in-progress: true
 
 jobs:
-  update-stats:
+  generate:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # 生成深色主题的统计卡片
-      - name: Generate stats card (dark theme)
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: stats
-          options: username=Giperx&show_icons=true&theme=dark
-          path: profile/stats-dark.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare folders
+        run: |
+          mkdir -p profile
+          mkdir -p .tmp
 
-      # 生成浅色主题的统计卡片
-      - name: Generate stats card (light theme)
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: stats
-          options: username=Giperx&show_icons=true&theme=default
-          path: profile/stats-light.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch light stats
+        run: |
+          curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
+            "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=default&cache_seconds=21600" \
+            -o .tmp/stats-light.svg
 
-      # 生成深色主题的语言统计卡片
-      - name: Generate top languages card (dark theme)
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: top-langs
-          options: username=Giperx&layout=compact&theme=dark
-          path: profile/top-langs-dark.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch dark stats
+        run: |
+          curl -fsSL --retry 5 --retry-delay 3 --max-time 30 \
+            "https://github-readme-stats.vercel.app/api?username=Giperx&show_icons=true&hide_border=true&theme=github_dark&cache_seconds=21600" \
+            -o .tmp/stats-dark.svg
 
-      # 生成浅色主题的语言统计卡片
-      - name: Generate top languages card (light theme)
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: top-langs
-          options: username=Giperx&layout=compact&theme=default
-          path: profile/top-langs-light.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Validate SVGs
+        run: |
+          test -s .tmp/stats-light.svg
+          test -s .tmp/stats-dark.svg
+          grep -qi "<svg" .tmp/stats-light.svg
+          grep -qi "<svg" .tmp/stats-dark.svg
+          ! grep -qi "Something went wrong" .tmp/stats-light.svg
+          ! grep -qi "Something went wrong" .tmp/stats-dark.svg
 
-      # 提交生成的卡片
-      - name: Commit updated cards
+      - name: Publish files
+        run: |
+          cp .tmp/stats-light.svg profile/stats-light.svg
+          cp .tmp/stats-dark.svg profile/stats-dark.svg
+
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/*.svg
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Update GitHub stats cards"
+          git add profile/stats-light.svg profile/stats-dark.svg
+          git commit -m "chore(profile): update stats svg" || echo "No changes"
           git push
